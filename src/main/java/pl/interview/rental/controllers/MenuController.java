@@ -65,6 +65,8 @@ public class MenuController {
             } catch (IOException ioe) {
                 System.out.println("IO error trying to read your input!");
                 System.exit(1);
+            } catch (NumberFormatException ex) {
+                System.out.println();
             }
 
 

@@ -20,4 +20,9 @@
         <lastName>Flintstone</lastName>
         <dateOfBirth>01-01-1900</dateOfBirth>
     </client>
+    <client>
+        <firstName>Adam</firstName>
+        <lastName>Malysz</lastName>
+        <dateOfBirth>01-01-1974</dateOfBirth>
+    </client>
 </clients>
