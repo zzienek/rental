@@ -1,10 +1,11 @@
-package pl.interview.rental.model;
+package pl.interview.rental.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.interview.rental.ListGetter;
+import pl.interview.rental.model.User;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -20,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @XmlRootElement(name = "clients")
-public class Users extends ListGetter<User> {
+public class UserRepository extends ListGetter<User> {
 
     private List<User> users;
 

@@ -3,7 +3,7 @@ package pl.interview.rental;
 import org.junit.Before;
 import org.junit.Test;
 import pl.interview.rental.model.Car;
-import pl.interview.rental.model.Cars;
+import pl.interview.rental.repository.CarRepository;
 import pl.interview.rental.model.User;
 
 import javax.xml.bind.JAXBContext;
@@ -22,18 +22,18 @@ public class CarToXmlListTest {
     public void setUp() throws ParseException {
         long l = 10;
         Long longId = new Long(l);
-        User user = new User(longId,"Bartosz", "Zienkiewicz", dateFormat.parse("01-01-1990"));
+        User user = new User("Bartosz", "Zienkiewicz", dateFormat.parse("01-01-1990"));
         car = new Car(longId, "Fiat", "AWDGB", new Double(64), user);
         car1 = new Car(longId, "Ford", "AAAA", new Double(61), null);
     }
 
     @Test
     public void testObjectToXml() throws JAXBException, FileNotFoundException {
-        Cars cars = new Cars();
+        CarRepository cars = new CarRepository();
         cars.add(car);
         cars.add(car1);
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(Cars.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(CarRepository.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
         marshaller.marshal(cars, new File("cars.xml"));

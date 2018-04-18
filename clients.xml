@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <clients>
-    <client id="10">
+    <client>
         <firstName>Bartosz</firstName>
         <lastName>Zienkiewicz</lastName>
         <dateOfBirth>01-01-1990</dateOfBirth>
     </client>
-    <client id="15">
+    <client>
         <firstName>Kamil</firstName>
         <lastName>Bednarek</lastName>
         <dateOfBirth>01-01-1999</dateOfBirth>
     </client>
-    <client id="2">
+    <client>
         <firstName>Baltazar</firstName>
         <lastName>Gąbka</lastName>
         <dateOfBirth>01-01-1991</dateOfBirth>
     </client>
-    <client id="6">
+    <client>
         <firstName>Fred</firstName>
         <lastName>Flintstone</lastName>
         <dateOfBirth>01-01-1900</dateOfBirth>
+    </client>
+    <client>
+        <firstName>Adam</firstName>
+        <lastName>Malysz</lastName>
+        <dateOfBirth>01-01-1974</dateOfBirth>
     </client>
 </clients>

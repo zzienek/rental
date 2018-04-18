@@ -4,15 +4,25 @@
         <model>Fiat</model>
         <plateNo>AWDGB</plateNo>
         <dailyRate>64.0</dailyRate>
-        <client id="10">
-            <firstName>Bartosz</firstName>
-            <lastName>Zienkiewicz</lastName>
-            <dateOfBirth>01-01-1990</dateOfBirth>
-        </client>
     </car>
-    <car id="10">
+    <car id="9">
         <model>Ford</model>
         <plateNo>AAAA</plateNo>
         <dailyRate>61.0</dailyRate>
+    </car>
+    <car id="11">
+        <model>Bentley</model>
+        <plateNo>RICH00</plateNo>
+        <dailyRate>261.0</dailyRate>
+    </car>
+    <car id="112">
+        <model>Lamborghini</model>
+        <plateNo>TOOFAST</plateNo>
+        <dailyRate>263.0</dailyRate>
+        <client>
+            <firstName>Kamil</firstName>
+            <lastName>Bednarek</lastName>
+            <dateOfBirth>01-01-1999</dateOfBirth>
+        </client>
     </car>
 </cars>

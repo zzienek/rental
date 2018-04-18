@@ -1,10 +1,11 @@
-package pl.interview.rental.model;
+package pl.interview.rental.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.interview.rental.ListGetter;
+import pl.interview.rental.model.Car;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @XmlRootElement(name = "cars")
-public class Cars extends ListGetter<Car> {
+public class CarRepository extends ListGetter<Car> {
 
 
     private List<Car> cars;

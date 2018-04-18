@@ -14,8 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @XmlRootElement(name = "client")
 public class User {
-    @XmlAttribute(name = "id")
-    private Long id;
     @XmlElement(name = "firstName")
     private String firstName;
     @XmlElement(name = "lastName")
@@ -27,11 +25,22 @@ public class User {
     @Override
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateFormat.format(dateOfBirth) +
-                '}';
+        return
+                "First Name:'" + firstName + '\'' +
+                "Last Name:'" + lastName + '\'' +
+                "Date Of Birth:" + dateFormat.format(dateOfBirth) ;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 }

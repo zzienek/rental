@@ -26,12 +26,38 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", model='" + model + '\'' +
-                ", plateNo='" + plateNo + '\'' +
-                ", dailyRate=" + dailyRate +
-                ", currentClient=" + currentClient +
-                '}';
+        String s = "Model:'" + model + '\'' +
+                ", Plate Number:'" + plateNo + '\'' +
+                ", Daily Rate=" + dailyRate;
+        return currentClient != null ? s + ", Current Client:" + currentClient :         s;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getPlateNo() {
+        return plateNo;
+    }
+
+    public double getDailyRate() {
+        return dailyRate;
+    }
+
+    public User getCurrentClient() {
+        return currentClient;
+    }
+
+    public void returnCar() {
+        this.currentClient = null;
+    }
+
+    public void rentForClient(User user) {
+        this.currentClient = user;
     }
 }
