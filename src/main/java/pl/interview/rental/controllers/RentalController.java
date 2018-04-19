@@ -35,8 +35,13 @@ public class RentalController {
 
     @PostConstruct
     public void init() throws JAXBException {
-        loadClientListFromFile();
-        loadCarListFromFile();
+        try {
+            loadClientListFromFile();
+            loadCarListFromFile();
+        } catch (Exception e) {
+            System.out.println("Error loading files!");
+            System.exit(1);
+        }
     }
 
     private void loadClientListFromFile() throws JAXBException {
