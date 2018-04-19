@@ -24,7 +24,7 @@ public class CarToXmlListTest {
         Long longId = new Long(l);
         User user = new User("Bartosz", "Zienkiewicz", dateFormat.parse("01-01-1990"));
         car = new Car(longId, "Fiat", "AWDGB", new Double(64), user);
-        car1 = new Car(longId, "Ford", "AAAA", new Double(61), null);
+        car1 = new Car(longId + 1, "Ford", "AAAA", new Double(61), null);
     }
 
     @Test

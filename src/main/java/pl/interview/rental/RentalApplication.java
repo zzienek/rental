@@ -6,16 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import pl.interview.rental.service.MenuService;
 
 @SpringBootApplication
 public class RentalApplication implements CommandLineRunner {
     @Autowired
-    public RentalApplication(MenuService menuService) {
-        this.menuService = menuService;
+    public RentalApplication(Menu menu) {
+        this.menu = menu;
     }
 
-    MenuService menuService;
+    Menu menu;
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(RentalApplication.class)
@@ -26,7 +25,7 @@ public class RentalApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        menuService.init();
+        menu.init();
     }
 
 

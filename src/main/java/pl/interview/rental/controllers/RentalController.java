@@ -48,7 +48,7 @@ public class RentalController {
     }
 
     public void saveFiles() {
-        fileService.saveFiles();
+        fileService.saveFiles(carList, clientList);
     }
 
     public void createUser() {
@@ -82,7 +82,7 @@ public class RentalController {
 
     public void returnCar() {
         try {
-            carService.returnCar();
+            carService.returnCar(carList);
         } catch (IOException e) {
             System.out.println("Problem with your input");
         } catch (Exception ex) {
@@ -94,7 +94,7 @@ public class RentalController {
     public void rentCar() {
         try {
 
-            carService.rentCar();
+            carService.rentCar(carList, clientList);
 
         } catch (IOException e) {
             System.out.println("Problem with your input");
@@ -123,12 +123,5 @@ public class RentalController {
 
     }
 
-    public List<User> getClientList() {
-        return clientList;
-    }
-
-    public List<Car> getCarList() {
-        return carList;
-    }
 
 }

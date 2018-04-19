@@ -1,10 +1,7 @@
 package pl.interview.rental.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import pl.interview.rental.adapters.FileAdapter;
-import pl.interview.rental.controllers.RentalController;
 import pl.interview.rental.model.Car;
 import pl.interview.rental.model.User;
 import pl.interview.rental.repository.CarRepository;
@@ -27,12 +24,12 @@ public class FileService {
         return carsFileAdapter.loadListFromFile("cars.xml");
     }
 
-    public void saveFiles() {
+    public void saveFiles(List<Car> carList, List<User> clientList) {
         FileAdapter<CarRepository, Car> carsFileAdapter = new FileAdapter<>(new CarRepository());
         FileAdapter<UserRepository, User> clientsFileAdapter = new FileAdapter<>(new UserRepository());
         try {
-//            carsFileAdapter.saveListToFile("cars.xml", new CarRepository(rentalController.getCarList()));
-//            clientsFileAdapter.saveListToFile("clients.xml", new UserRepository(rentalController.getClientList()));
+            carsFileAdapter.saveListToFile("cars.xml", new CarRepository(carList));
+            clientsFileAdapter.saveListToFile("clients.xml", new UserRepository(clientList));
         } catch (Exception e) {
             System.out.println("Unexpected error.");
         }
