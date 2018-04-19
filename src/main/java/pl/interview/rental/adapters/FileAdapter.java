@@ -1,8 +1,9 @@
-package pl.interview.rental;
+package pl.interview.rental.adapters;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import pl.interview.rental.ListGetter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

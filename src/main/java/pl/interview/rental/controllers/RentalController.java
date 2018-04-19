@@ -1,55 +1,66 @@
-package pl.interview.rental.service;
+package pl.interview.rental.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.interview.rental.FileAdapter;
-import pl.interview.rental.controllers.CarController;
-import pl.interview.rental.controllers.FileController;
-import pl.interview.rental.controllers.UserController;
+import org.springframework.stereotype.Controller;
 import pl.interview.rental.model.Car;
-import pl.interview.rental.repository.CarRepository;
 import pl.interview.rental.model.User;
-import pl.interview.rental.repository.UserRepository;
+import pl.interview.rental.service.CarService;
+import pl.interview.rental.service.FileService;
+import pl.interview.rental.service.UserService;
 
 import javax.annotation.PostConstruct;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Comparator;
 import java.util.List;
 
-@Component
-public class RentalService {
+@Controller
+public class RentalController {
     List<User> clientList;
     List<Car> carList;
 
+    private final UserService userService;
+    private final CarService carService;
+    private final FileService fileService;
+
     @Autowired
-    UserController userController;
-    @Autowired
-    CarController carController;
-    @Autowired
-    FileController fileController;
+    public RentalController(UserService userService, CarService carService, FileService fileService) {
+        this.userService = userService;
+        this.carService = carService;
+        this.fileService = fileService;
+    }
+
 
     @PostConstruct
     public void init() throws JAXBException {
-        setClientListFromFile();
-        setCarListFromFile();
+        loadClientListFromFile();
+        loadCarListFromFile();
     }
 
-    private void setClientListFromFile() throws JAXBException {
-        clientList = fileController.loadClientListFromFile();
+    private void loadClientListFromFile() throws JAXBException {
+        clientList = fileService.loadClientListFromFile();
     }
 
-    private void setCarListFromFile() throws JAXBException {
-        carList = fileController.loadCarListFromFile();
+    private void loadCarListFromFile() throws JAXBException {
+        carList = fileService.loadCarListFromFile();
     }
 
     public void saveFiles() {
-       fileController.saveFiles();
+        fileService.saveFiles();
     }
 
     public void createUser() {
         try {
-            userController.createUser();
+            User client = userService.createUser();
+            System.out.println();
+            if (containsClient(client)) {
+                System.out.println("Client already exists");
+            } else {
+                clientList.add(client);
+                System.out.println("Client added");
+            }
         } catch (IOException e) {
             System.out.println("Problem with input.");
         } catch (ParseException e) {
@@ -71,7 +82,7 @@ public class RentalService {
 
     public void returnCar() {
         try {
-            carController.returnCar();
+            carService.returnCar();
         } catch (IOException e) {
             System.out.println("Problem with your input");
         } catch (Exception ex) {
@@ -82,7 +93,8 @@ public class RentalService {
 
     public void rentCar() {
         try {
-            carController.rentCar();
+
+            carService.rentCar();
 
         } catch (IOException e) {
             System.out.println("Problem with your input");
@@ -92,16 +104,23 @@ public class RentalService {
     }
 
     public void displayAllByModel() throws IOException {
-        carController.displayAllByModel();
+        System.out.println("ALL CARS");
+        carList.stream().sorted(Comparator.comparing(Car::getModel)).forEach(item -> System.out.println(item));
     }
 
 
     public void listAvailibleAsc() throws IOException {
-        carController.displayAvailibleByRateAsc();
+        System.out.println("AVAILABLE CARS");
+        carList.stream()
+                .filter(item -> item.getCurrentClient() == null).sorted(Comparator.comparing(Car::getDailyRate)).forEach(item -> System.out.println(item));
+
     }
 
     public void listAvailibleDesc() throws IOException {
-        carController.displayAvailibleByRateDesc();
+        System.out.println("AVAILABLE CARS");
+        carList.stream()
+                .filter(item -> item.getCurrentClient() == null).sorted(Comparator.comparing(Car::getDailyRate).reversed()).forEach(item -> System.out.println(item));
+
     }
 
     public List<User> getClientList() {
@@ -111,4 +130,5 @@ public class RentalService {
     public List<Car> getCarList() {
         return carList;
     }
+
 }

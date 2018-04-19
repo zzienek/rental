@@ -1,4 +1,4 @@
-package pl.interview.rental.model;
+package pl.interview.rental.adapters;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.SimpleDateFormat;

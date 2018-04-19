@@ -1,17 +1,22 @@
-package pl.interview.rental.controllers;
+package pl.interview.rental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import pl.interview.rental.service.RentalService;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import pl.interview.rental.controllers.RentalController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-@Controller
-public class MenuController {
+@Service
+public class MenuService {
+    RentalController rentalController;
+
     @Autowired
-    RentalService rentalService;
+    public MenuService(RentalController rentalController) {
+        this.rentalController = rentalController;
+    }
 
     public void init() {
         int input = 0;
@@ -26,31 +31,31 @@ public class MenuController {
                 input = Integer.parseInt(br.readLine());
                 switch (input) {
                     case 1:
-                        rentalService.createUser();
+                        rentalController.createUser();
                         waitForEnterKey();
                         break;
                     case 2:
-                        rentalService.listAvailibleAsc();
+                        rentalController.listAvailibleAsc();
                         waitForEnterKey();
                         break;
                     case 3:
-                        rentalService.listAvailibleDesc();
+                        rentalController.listAvailibleDesc();
                         waitForEnterKey();
                         break;
                     case 4:
-                        rentalService.displayAllByModel();
+                        rentalController.displayAllByModel();
                         waitForEnterKey();
                         break;
                     case 5:
-                        rentalService.rentCar();
+                        rentalController.rentCar();
                         waitForEnterKey();
                         break;
                     case 6:
-                        rentalService.returnCar();
+                        rentalController.returnCar();
                         waitForEnterKey();
                         break;
                     case 7:
-                        rentalService.saveFiles();
+                        rentalController.saveFiles();
                         waitForEnterKey();
                         break;
                     case 8:

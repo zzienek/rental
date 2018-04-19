@@ -1,11 +1,10 @@
-package pl.interview.rental.controllers;
+package pl.interview.rental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import pl.interview.rental.model.Car;
+import org.springframework.stereotype.Service;
+import pl.interview.rental.controllers.RentalController;
 import pl.interview.rental.model.User;
-import pl.interview.rental.service.RentalService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,15 +14,12 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@Controller
-public class UserController {
+@Service
+public class UserService {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    @Autowired
-    RentalService rentalService;
 
-    public void createUser() throws IOException, ParseException {
+    public User createUser() throws IOException, ParseException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.println("First name: ");
         String firstName = br.readLine();
         System.out.println("Last name: ");
@@ -31,21 +27,15 @@ public class UserController {
         System.out.println("Birth date (dd-MM-yyyy): ");
         String s = br.readLine();
 
-        User client = new User(firstName, lastName, dateFormat.parse(s));
-        System.out.println();
+        return new User(firstName, lastName, dateFormat.parse(s));
 
-        if (rentalService.containsClient(client)) {
-            System.out.println("Client already exists");
-        } else {
-            rentalService.getClientList().add(client);
-            System.out.println("Client added");
-        }
+
     }
 
-    public int chooseClient() throws IOException {
+    public int chooseClient(List<User> clientList) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        printList(rentalService.getClientList());
+        printList(clientList);
         System.out.print("Choose client...");
         int input = Integer.parseInt(br.readLine());
         return input - 1;
