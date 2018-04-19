@@ -36,12 +36,12 @@ public class CarService {
             int input = Integer.parseInt(br.readLine());
             Long returnedId = toReturnList.get(input - 1).getId();
 
-            rentalController.getCarList().stream().forEach(item -> {
-                if (item.getId().equals(returnedId)) {
-                    item.returnCar();
-                    System.out.println("Car returned");
-                }
-            });
+//            rentalController.getCarList().stream().forEach(item -> {
+//                if (item.getId().equals(returnedId)) {
+//                    item.returnCar();
+//                    System.out.println("Car returned");
+//                }
+//            });
         } else {
             System.out.println("All cars are available");
         }
@@ -57,13 +57,13 @@ public class CarService {
             System.out.print("Choose car for rent...");
             int input = Integer.parseInt(br.readLine());
             Long rentId = toRent.get(input - 1).getId();
-            int clientIndex = userService.chooseClient(rentalController.getClientList());
-            rentalController.getCarList().stream().forEach(item -> {
-                if (item.getId().equals(rentId)) {
-                    item.rentForClient(rentalController.getClientList().get(clientIndex));
-                    System.out.println("Car successfully rent!");
-                }
-            });
+//            int clientIndex = userService.chooseClient(rentalController.getClientList());
+//            rentalController.getCarList().stream().forEach(item -> {
+//                if (item.getId().equals(rentId)) {
+//                    item.rentForClient(rentalController.getClientList().get(clientIndex));
+//                    System.out.println("Car successfully rent!");
+//                }
+//            });
         } else {
             System.out.println("No available cars");
         }
@@ -77,12 +77,14 @@ public class CarService {
     }
 
     private List<Car> loadTakenCarList() {
-        return rentalController.getCarList().stream()
-                .filter(item -> item.getCurrentClient() != null).collect(Collectors.toList());
+//        return rentalController.getCarList().stream()
+//                .filter(item -> item.getCurrentClient() != null).collect(Collectors.toList());
+        return null;
     }
 
     private List<Car> loadAvailibleCarList() {
-        return rentalController.getCarList().stream()
-                .filter(item -> item.getCurrentClient() == null).collect(Collectors.toList());
+//        return rentalController.getCarList().stream()
+//                .filter(item -> item.getCurrentClient() == null).collect(Collectors.toList());
+        return null;
     }
 }

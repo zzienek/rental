@@ -11,12 +11,6 @@ import java.io.InputStreamReader;
 
 @Service
 public class MenuService {
-    RentalController rentalController;
-
-    @Autowired
-    public MenuService(RentalController rentalController) {
-        this.rentalController = rentalController;
-    }
 
     public void init() {
         int input = 0;
@@ -26,53 +20,53 @@ public class MenuService {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            try {
-                showMenu();
-                input = Integer.parseInt(br.readLine());
-                switch (input) {
-                    case 1:
-                        rentalController.createUser();
-                        waitForEnterKey();
-                        break;
-                    case 2:
-                        rentalController.listAvailibleAsc();
-                        waitForEnterKey();
-                        break;
-                    case 3:
-                        rentalController.listAvailibleDesc();
-                        waitForEnterKey();
-                        break;
-                    case 4:
-                        rentalController.displayAllByModel();
-                        waitForEnterKey();
-                        break;
-                    case 5:
-                        rentalController.rentCar();
-                        waitForEnterKey();
-                        break;
-                    case 6:
-                        rentalController.returnCar();
-                        waitForEnterKey();
-                        break;
-                    case 7:
-                        rentalController.saveFiles();
-                        waitForEnterKey();
-                        break;
-                    case 8:
-                        System.out.println("You have quit the program\r\n");
-                        System.exit(1);
-                        break;
-                    default:
-                        clearScreen();
-                        System.out.println("You have entered an invalid selection, please try again");
-                        System.in.read();
-                }
-            } catch (IOException ioe) {
-                System.out.println("IO error trying to read your input!");
-                System.exit(1);
-            } catch (NumberFormatException ex) {
-                System.out.println();
-            }
+//            try {
+//                showMenu();
+//                input = Integer.parseInt(br.readLine());
+//                switch (input) {
+//                    case 1:
+//                        this.rentalController.createUser();
+//                        waitForEnterKey();
+//                        break;
+//                    case 2:
+//                        rentalController.listAvailibleAsc();
+//                        waitForEnterKey();
+//                        break;
+//                    case 3:
+//                        rentalController.listAvailibleDesc();
+//                        waitForEnterKey();
+//                        break;
+//                    case 4:
+//                        rentalController.displayAllByModel();
+//                        waitForEnterKey();
+//                        break;
+//                    case 5:
+//                        rentalController.rentCar();
+//                        waitForEnterKey();
+//                        break;
+//                    case 6:
+//                        rentalController.returnCar();
+//                        waitForEnterKey();
+//                        break;
+//                    case 7:
+//                        rentalController.saveFiles();
+//                        waitForEnterKey();
+//                        break;
+//                    case 8:
+//                        System.out.println("You have quit the program\r\n");
+//                        System.exit(1);
+//                        break;
+//                    default:
+//                        clearScreen();
+//                        System.out.println("You have entered an invalid selection, please try again");
+//                        System.in.read();
+//                }
+//            } catch (IOException ioe) {
+//                System.out.println("IO error trying to read your input!");
+//                System.exit(1);
+//            } catch (NumberFormatException ex) {
+//                System.out.println();
+//            }
 
 
         } while (input != 8);

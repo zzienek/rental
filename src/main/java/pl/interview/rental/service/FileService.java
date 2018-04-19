@@ -15,12 +15,7 @@ import java.util.List;
 
 @Service
 public class FileService {
-    RentalController rentalController;
 
-    @Autowired
-    public FileService(RentalController rentalController) {
-        this.rentalController = rentalController;
-    }
 
     public List<User> loadClientListFromFile() throws JAXBException {
         FileAdapter<UserRepository, User> clientsFileAdapter = new FileAdapter<>(new UserRepository());
@@ -36,8 +31,8 @@ public class FileService {
         FileAdapter<CarRepository, Car> carsFileAdapter = new FileAdapter<>(new CarRepository());
         FileAdapter<UserRepository, User> clientsFileAdapter = new FileAdapter<>(new UserRepository());
         try {
-            carsFileAdapter.saveListToFile("cars.xml", new CarRepository(rentalController.getCarList()));
-            clientsFileAdapter.saveListToFile("clients.xml", new UserRepository(rentalController.getClientList()));
+//            carsFileAdapter.saveListToFile("cars.xml", new CarRepository(rentalController.getCarList()));
+//            clientsFileAdapter.saveListToFile("clients.xml", new UserRepository(rentalController.getClientList()));
         } catch (Exception e) {
             System.out.println("Unexpected error.");
         }
